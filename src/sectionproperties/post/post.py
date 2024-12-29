@@ -543,12 +543,26 @@ def draw_principal_axis(
     ax.plot(x11[:, 0], x11[:, 1], "k--", alpha=0.5, label="11-axis")  # pyright: ignore
     ax.plot(y22[:, 0], y22[:, 1], "k-.", alpha=0.5, label="22-axis")  # pyright: ignore
 
-
 def print_results(
+        section:Section,
+        fmt:str,
+ ) -> None:
+    """Prints the results that have been calculated to the terminal.
+
+    Args:
+        section: Section object
+        fmt: Number formatting string
+    """
+    table = get_results(section=section,fmt=fmt)
+    console = Console()
+    console.print(table)
+    print("")
+
+def get_results(
     section: Section,
     fmt: str,
-) -> None:
-    """Prints the results that have been calculated to the terminal.
+) -> Table:
+    """Gets the results that have been calculated as a rich table.
 
     Args:
         section: Section object
@@ -931,7 +945,4 @@ def print_results(
         table.add_row("sf_22-", f"{sf_22_minus:>{fmt}}")
     except RuntimeError:
         pass
-
-    console = Console()
-    console.print(table)
-    print("")
+    return table

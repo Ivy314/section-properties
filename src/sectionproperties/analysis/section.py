@@ -1872,6 +1872,18 @@ class Section:
                 https://docs.python.org/3/library/string.html. Defaults to ``"8.6e"``.
         """
         post.print_results(section=self, fmt=fmt)
+    
+    def get_results(
+        self,
+        fmt: str = "8.6e",
+    ) -> Table:
+        """Gets the results that have been calculated to the terminal.
+
+        Args:
+            fmt: Number formatting string, see
+                https://docs.python.org/3/library/string.html. Defaults to ``"8.6e"``.
+        """
+        return post.get_results(section=self, fmt=fmt)
 
     def is_composite(self) -> bool:
         """Returns whether or not a composite section is being analysed.
